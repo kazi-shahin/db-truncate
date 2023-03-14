@@ -1,9 +1,9 @@
 <?php
 namespace Blubird\DbTruncate\Console;
 
-use App\Facades\Schema;
-use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Console\Command;
 
 class DBTruncateCommand extends Command
 {
