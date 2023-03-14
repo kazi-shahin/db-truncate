@@ -1,0 +1,30 @@
+{
+  "name": "blubird/db-truncate",
+  "description": "Your can truncate all your tables in your database",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Amimul Ehshan",
+      "email": "amimulehshan29@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "doctrine/dbal": "^3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Blubird\\DbTruncate\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Blubird\\DbTruncate\\DbTruncateServiceProvider"
+      ]
+    }
+  }
+}
