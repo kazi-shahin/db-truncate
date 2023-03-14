@@ -2,7 +2,7 @@
 
 # Installation:
 
-- `composer require amims71/db-truncate`
+- `composer require blubird/db-truncate`
 
 # Command
 
