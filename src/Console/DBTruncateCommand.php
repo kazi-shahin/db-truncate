@@ -66,13 +66,23 @@ class DBTruncateCommand extends Command
         return 1;
     }
 
-    protected function dbSeed()
+    /**
+     * Run the db:seed command
+     *
+     * @return void
+     */
+    protected function dbSeed(): void
     {
         $this->info('Executing seeds...');
         $this->call('db:seed');
         $this->info('Seeding completed.');
     }
 
+    /**
+     * Checks if seed flag is passed
+     *
+     * @return boolean
+     */
     protected function isSeedEnabled(): bool
     {
         return $this->option('seed') == true;
