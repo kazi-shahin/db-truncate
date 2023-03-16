@@ -12,7 +12,7 @@ class DBTruncateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'db:truncate {--except= : Tables to exclude from truncation (comma-separated)}';
+    protected $signature = 'db:truncate {--except= : Tables to exclude from truncation (comma-separated)} {--seed : If want to run seed after the truncate}';
 
     /**
      * The console command description.
@@ -58,6 +58,33 @@ class DBTruncateCommand extends Command
 
         $this->comment('Enabling foreign key checks...');
         Schema::enableForeignKeyConstraints();
+        $this->comment('Truncate completed.');
+
+        if ($this->isSeedEnabled()) {
+            $this->dbSeed();
+        }
         return 1;
+    }
+
+    /**
+     * Run the db:seed command
+     *
+     * @return void
+     */
+    protected function dbSeed(): void
+    {
+        $this->info('Executing seeds...');
+        $this->call('db:seed');
+        $this->info('Seeding completed.');
+    }
+
+    /**
+     * Checks if seed flag is passed
+     *
+     * @return boolean
+     */
+    protected function isSeedEnabled(): bool
+    {
+        return $this->option('seed') == true;
     }
 }
