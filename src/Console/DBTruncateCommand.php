@@ -12,7 +12,7 @@ class DBTruncateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'db:truncate {--except= : Tables to exclude from truncation (comma-separated)} {--seed : If want to run seed after the truncate}';
+    protected $signature = 'db:truncate {--except= : Tables to exclude from truncation (comma-separated)} {--seed : If want to run seed after the truncate} {--only= : Tables to include in truncation (comma-separated)}';
 
     /**
      * The console command description.
@@ -45,6 +45,13 @@ class DBTruncateCommand extends Command
             $this->comment('Skipping tables: ' . $excepts);
             $except = explode(',', $excepts);
             $tableNames = array_diff($tableNames, $except);
+        }
+
+        if ($this->option('only')) {
+            $onlys = $this->option('only');
+            $this->comment('Only truncating tables: ' . $onlys);
+            $only = explode(',', $onlys);
+            $tableNames = array_intersect($tableNames, $only);
         }
 
         $this->comment('Disabling foreign key checks...');
