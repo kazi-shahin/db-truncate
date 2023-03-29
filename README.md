@@ -10,3 +10,5 @@ You can also ignore some tables while truncating all the others. for example `mi
 
 - `php artisan db:truncate`
 - `php artisan db:truncate --except=migrations,users`
+- `php artisan db:truncate --only=users,roles,permissions`
+- 
